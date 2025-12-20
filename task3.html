@@ -70,11 +70,34 @@ button {
     cursor: pointer;
 }
 
-#result {
+/* POP-UP */
+#popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+#popupContent {
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
     text-align: center;
-    font-size: 34px;
-    margin-top: 25px;
-    color: #9d174d;
+    max-width: 90%;
+}
+
+#popupContent h2 {
+    font-size: 36px;
+    color: #be185d;
+    margin-bottom: 15px;
+}
+
+#popupContent img {
+    max-width: 280px;
+    border-radius: 20px;
 }
 </style>
 </head>
@@ -130,7 +153,7 @@ button {
 </div>
 
 <div class="task" id="t5">
-<h3>🟢 Kur yra žalia spalva?</h3>
+<h3>Kur yra žalia spalva?</h3>
 <div class="options">
 <div class="option" onclick="toggleOption(this,'q5','a')">🔴</div>
 <div class="option" onclick="toggleOption(this,'q5','b')">🟡</div>
@@ -140,12 +163,16 @@ button {
 <input type="hidden" name="q5">
 </div>
 
-    
-<div id="result"></div>
-
 <button type="button" onclick="check()">💖 Tikrinam!</button>
 </form>
 
+<!-- POP-UP -->
+<div id="popup" onclick="closePopup()">
+<div id="popupContent">
+<h2>🎉 Sveikinu! Šaunuolė! 🎉</h2>
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExenFxcWY2YjAycnNrM3B4eWt1MG0xZzZoZjhnbDRjbGRhMGx5MXg1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fXiEx2PQF1bBXYi7bG/giphy.gif">
+</div>
+</div>
 
 <script>
 function toggleOption(el, q, val) {
@@ -153,38 +180,23 @@ function toggleOption(el, q, val) {
     const hidden = task.querySelector(`input[name="${q}"]`);
     const options = task.querySelectorAll(".option");
 
-    // jei spaudžia tą patį – nuimam pasirinkimą
     if (hidden.value === val) {
         hidden.value = "";
         el.classList.remove("selected");
         return;
     }
 
-    // nuimam visus kitus pasirinkimus tame klausime
     options.forEach(o => o.classList.remove("selected"));
-
-    // pažymim tik vieną
     el.classList.add("selected");
     hidden.value = val;
 }
 
 function check() {
-    const correct = ["d","b","a","b","c"];
-    let ok = true;
+    document.getElementById("popup").style.display = "flex";
+}
 
-    document.querySelectorAll(".task").forEach(t => t.classList.remove("wrong"));
-
-    correct.forEach((a,i)=>{
-        const val = document.querySelector(`input[name="q${i+1}"]`).value;
-        if(val !== a){
-            document.getElementById("t"+(i+1)).classList.add("wrong");
-            ok = false;
-        }
-    });
-
-    document.getElementById("result").innerText = ok
-        ? "🌟 ŠAUNUOLĖ! 🌟"
-        : "🌸 Bandykime dar kartą!";
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
 }
 </script>
 
