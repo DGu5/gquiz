@@ -7,7 +7,7 @@
 <style>
 body {
     font-family: "Comic Sans MS", Arial, sans-serif;
-    background: linear-gradient(#fde2f3, #fce7f3);
+    background: linear-gradient(#fde2f3, #fbcfe8);
     padding: 20px;
 }
 
@@ -19,17 +19,17 @@ h1 {
 
 .task {
     background: white;
-    border-radius: 25px;
+    border-radius: 30px;
     padding: 25px;
-    margin-bottom: 25px;
+    margin-bottom: 30px;
     text-align: center;
     font-size: 150%;
-    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
 }
 
 .task.wrong {
     background: #ffe4e6;
-    border: 4px solid #fb7185;
+    border: 5px solid #fb7185;
 }
 
 .options {
@@ -37,35 +37,43 @@ h1 {
     justify-content: center;
     gap: 25px;
     flex-wrap: wrap;
-    margin-top: 20px;
+    margin-top: 25px;
 }
 
 .option {
     font-size: 80px;
     cursor: pointer;
-    transition: transform 0.2s;
+    padding: 15px;
+    border-radius: 25px;
+    border: 6px solid transparent;
+    transition: transform 0.2s, border 0.2s;
+}
+
+.option.selected {
+    border-color: #ec4899;
+    background: #fce7f3;
 }
 
 .option:hover {
-    transform: scale(1.2);
+    transform: scale(1.15);
 }
 
 button {
     display: block;
-    margin: 30px auto;
-    padding: 20px 45px;
-    font-size: 32px;
+    margin: 40px auto;
+    padding: 22px 50px;
+    font-size: 34px;
     background: #ec4899;
     color: white;
     border: none;
-    border-radius: 30px;
+    border-radius: 35px;
     cursor: pointer;
 }
 
 #result {
     text-align: center;
-    font-size: 32px;
-    margin-top: 20px;
+    font-size: 34px;
+    margin-top: 25px;
     color: #9d174d;
 }
 </style>
@@ -73,18 +81,18 @@ button {
 
 <body>
 
-<h1>🌸 Pažaiskime! 🌸</h1>
+<h1>🌸 Pažaiskime kartu 🌸</h1>
 
 <form id="quiz">
 
 <!-- 1 -->
 <div class="task" id="t1">
-<h3>🐾 Kur yra liūtas?</h3>
+<h3>🦁 Kur yra liūtas?</h3>
 <div class="options">
-<span class="option" onclick="set('q1','a')">🦛</span>
-<span class="option" onclick="set('q1','b')">🐶</span>
-<span class="option" onclick="set('q1','c')">🦓</span>
-<span class="option" onclick="set('q1','d')">🦁</span>
+<div class="option" onclick="choose(this,'q1','a')">🦛</div>
+<div class="option" onclick="choose(this,'q1','b')">🐶</div>
+<div class="option" onclick="choose(this,'q1','c')">🦓</div>
+<div class="option" onclick="choose(this,'q1','d')">🦁</div>
 </div>
 <input type="hidden" name="q1">
 </div>
@@ -93,10 +101,10 @@ button {
 <div class="task" id="t2">
 <h3>🥤 Ką galima gerti?</h3>
 <div class="options">
-<span class="option" onclick="set('q2','a')">🍎</span>
-<span class="option" onclick="set('q2','b')">💧</span>
-<span class="option" onclick="set('q2','c')">📱</span>
-<span class="option" onclick="set('q2','d')">❄️</span>
+<div class="option" onclick="choose(this,'q2','a')">🍎</div>
+<div class="option" onclick="choose(this,'q2','b')">💧</div>
+<div class="option" onclick="choose(this,'q2','c')">📱</div>
+<div class="option" onclick="choose(this,'q2','d')">❄️</div>
 </div>
 <input type="hidden" name="q2">
 </div>
@@ -105,31 +113,34 @@ button {
 <div class="task" id="t3">
 <h3>🐱 Kur yra katė?</h3>
 <div class="options">
-<span class="option" onclick="set('q3','a')">🐱</span>
-<span class="option" onclick="set('q3','b')">🐘</span>
-<span class="option" onclick="set('q3','c')">🚗</span>
+<div class="option" onclick="choose(this,'q3','a')">🐱</div>
+<div class="option" onclick="choose(this,'q3','b')">🐘</div>
+<div class="option" onclick="choose(this,'q3','c')">🚗</div>
+<div class="option" onclick="choose(this,'q3','d')">🌸</div>
 </div>
 <input type="hidden" name="q3">
 </div>
 
 <!-- 4 -->
 <div class="task" id="t4">
-<h3>🍌 Ką galima valgyti?</h3>
+<h3>🌞 Kas šviečia dieną?</h3>
 <div class="options">
-<span class="option" onclick="set('q4','a')">🍌</span>
-<span class="option" onclick="set('q4','b')">🧦</span>
-<span class="option" onclick="set('q4','c')">📘</span>
+<div class="option" onclick="choose(this,'q4','a')">🌙</div>
+<div class="option" onclick="choose(this,'q4','b')">☀️</div>
+<div class="option" onclick="choose(this,'q4','c')">🌊</div>
+<div class="option" onclick="choose(this,'q4','d')">🌱</div>
 </div>
 <input type="hidden" name="q4">
 </div>
 
 <!-- 5 -->
 <div class="task" id="t5">
-<h3>🚗 Kur yra mašina?</h3>
+<h3>🟢 Kur yra žalia spalva?</h3>
 <div class="options">
-<span class="option" onclick="set('q5','a')">🚗</span>
-<span class="option" onclick="set('q5','b')">🐰</span>
-<span class="option" onclick="set('q5','c')">🌸</span>
+<div class="option" onclick="choose(this,'q5','a')">🔴</div>
+<div class="option" onclick="choose(this,'q5','b')">🟡</div>
+<div class="option" onclick="choose(this,'q5','c')">🟢</div>
+<div class="option" onclick="choose(this,'q5','d')">🔵</div>
 </div>
 <input type="hidden" name="q5">
 </div>
@@ -140,12 +151,14 @@ button {
 <div id="result"></div>
 
 <script>
-function set(q, v) {
-    document.querySelector(`input[name="${q}"]`).value = v;
+function choose(el, q, val) {
+    document.querySelectorAll(`input[name="${q}"] ~ .options .option`).forEach(o => o.classList.remove("selected"));
+    el.classList.add("selected");
+    document.querySelector(`input[name="${q}"]`).value = val;
 }
 
 function check() {
-    const correct = ["d","b","a","a","a"];
+    const correct = ["d","b","a","b","c"];
     let ok = true;
 
     document.querySelectorAll(".task").forEach(t => t.classList.remove("wrong"));
