@@ -46,7 +46,7 @@ h1 {
     padding: 15px;
     border-radius: 25px;
     border: 6px solid transparent;
-    transition: transform 0.2s, border 0.2s;
+    transition: transform 0.15s, border 0.15s, background 0.15s;
 }
 
 .option.selected {
@@ -55,7 +55,7 @@ h1 {
 }
 
 .option:hover {
-    transform: scale(1.15);
+    transform: scale(1.12);
 }
 
 button {
@@ -85,76 +85,87 @@ button {
 
 <form id="quiz">
 
-<!-- 1 -->
 <div class="task" id="t1">
 <h3>🦁 Kur yra liūtas?</h3>
 <div class="options">
-<div class="option" onclick="choose(this,'q1','a')">🦛</div>
-<div class="option" onclick="choose(this,'q1','b')">🐶</div>
-<div class="option" onclick="choose(this,'q1','c')">🦓</div>
-<div class="option" onclick="choose(this,'q1','d')">🦁</div>
+<div class="option" onclick="toggleOption(this,'q1','a')">🦛</div>
+<div class="option" onclick="toggleOption(this,'q1','b')">🐶</div>
+<div class="option" onclick="toggleOption(this,'q1','c')">🦓</div>
+<div class="option" onclick="toggleOption(this,'q1','d')">🦁</div>
 </div>
 <input type="hidden" name="q1">
 </div>
 
-<!-- 2 -->
 <div class="task" id="t2">
 <h3>🥤 Ką galima gerti?</h3>
 <div class="options">
-<div class="option" onclick="choose(this,'q2','a')">🍎</div>
-<div class="option" onclick="choose(this,'q2','b')">💧</div>
-<div class="option" onclick="choose(this,'q2','c')">📱</div>
-<div class="option" onclick="choose(this,'q2','d')">❄️</div>
+<div class="option" onclick="toggleOption(this,'q2','a')">🍎</div>
+<div class="option" onclick="toggleOption(this,'q2','b')">💧</div>
+<div class="option" onclick="toggleOption(this,'q2','c')">📱</div>
+<div class="option" onclick="toggleOption(this,'q2','d')">❄️</div>
 </div>
 <input type="hidden" name="q2">
 </div>
 
-<!-- 3 -->
 <div class="task" id="t3">
 <h3>🐱 Kur yra katė?</h3>
 <div class="options">
-<div class="option" onclick="choose(this,'q3','a')">🐱</div>
-<div class="option" onclick="choose(this,'q3','b')">🐘</div>
-<div class="option" onclick="choose(this,'q3','c')">🚗</div>
-<div class="option" onclick="choose(this,'q3','d')">🌸</div>
+<div class="option" onclick="toggleOption(this,'q3','a')">🐱</div>
+<div class="option" onclick="toggleOption(this,'q3','b')">🐘</div>
+<div class="option" onclick="toggleOption(this,'q3','c')">🚗</div>
+<div class="option" onclick="toggleOption(this,'q3','d')">🌸</div>
 </div>
 <input type="hidden" name="q3">
 </div>
 
-<!-- 4 -->
 <div class="task" id="t4">
 <h3>🌞 Kas šviečia dieną?</h3>
 <div class="options">
-<div class="option" onclick="choose(this,'q4','a')">🌙</div>
-<div class="option" onclick="choose(this,'q4','b')">☀️</div>
-<div class="option" onclick="choose(this,'q4','c')">🌊</div>
-<div class="option" onclick="choose(this,'q4','d')">🌱</div>
+<div class="option" onclick="toggleOption(this,'q4','a')">🌙</div>
+<div class="option" onclick="toggleOption(this,'q4','b')">☀️</div>
+<div class="option" onclick="toggleOption(this,'q4','c')">🌊</div>
+<div class="option" onclick="toggleOption(this,'q4','d')">🌱</div>
 </div>
 <input type="hidden" name="q4">
 </div>
 
-<!-- 5 -->
 <div class="task" id="t5">
 <h3>🟢 Kur yra žalia spalva?</h3>
 <div class="options">
-<div class="option" onclick="choose(this,'q5','a')">🔴</div>
-<div class="option" onclick="choose(this,'q5','b')">🟡</div>
-<div class="option" onclick="choose(this,'q5','c')">🟢</div>
-<div class="option" onclick="choose(this,'q5','d')">🔵</div>
+<div class="option" onclick="toggleOption(this,'q5','a')">🔴</div>
+<div class="option" onclick="toggleOption(this,'q5','b')">🟡</div>
+<div class="option" onclick="toggleOption(this,'q5','c')">🟢</div>
+<div class="option" onclick="toggleOption(this,'q5','d')">🔵</div>
 </div>
 <input type="hidden" name="q5">
 </div>
 
+    
+<div id="result"></div>
+
 <button type="button" onclick="check()">💖 Tikrinam!</button>
 </form>
 
-<div id="result"></div>
 
 <script>
-function choose(el, q, val) {
-    document.querySelectorAll(`input[name="${q}"] ~ .options .option`).forEach(o => o.classList.remove("selected"));
+function toggleOption(el, q, val) {
+    const task = el.closest(".task");
+    const hidden = task.querySelector(`input[name="${q}"]`);
+    const options = task.querySelectorAll(".option");
+
+    // jei spaudžia tą patį – nuimam pasirinkimą
+    if (hidden.value === val) {
+        hidden.value = "";
+        el.classList.remove("selected");
+        return;
+    }
+
+    // nuimam visus kitus pasirinkimus tame klausime
+    options.forEach(o => o.classList.remove("selected"));
+
+    // pažymim tik vieną
     el.classList.add("selected");
-    document.querySelector(`input[name="${q}"]`).value = val;
+    hidden.value = val;
 }
 
 function check() {
