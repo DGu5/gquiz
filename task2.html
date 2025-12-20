@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Veterinarijos žinių testas</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #f8fafc;
+    padding: 30px;
+    max-width: 900px;
+    margin: auto;
+    color: #111827;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.task {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-left: 6px solid #2563eb;
+}
+
+.task.wrong {
+    border-left-color: #dc2626;
+    background: #fef2f2;
+}
+
+label {
+    display: block;
+    margin: 8px 0;
+    cursor: pointer;
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    padding: 14px 28px;
+    font-size: 18px;
+    background: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #1d4ed8;
+}
+
+#result {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 30px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🩺 Veterinarijos žinių testas</h1>
+
+<form id="quiz">
+
+<div class="task" id="t1">
+<h3>1️⃣ Koks yra normalus suaugusio šuns kūno temperatūros intervalas?</h3>
+<label><input type="radio" name="q1" value="a"> 35,5–36,5 °C</label>
+<label><input type="radio" name="q1" value="b"> 36,0–37,0 °C</label>
+<label><input type="radio" name="q1" value="c"> 38,0–39,2 °C</label>
+<label><input type="radio" name="q1" value="d"> 40,0–41,5 °C</label>
+</div>
+
+<div class="task" id="t2">
+<h3>2️⃣ Kuri struktūra atsakinga už kraujo filtravimą inkstuose?</h3>
+<label><input type="radio" name="q2" value="a"> Neuronas</label>
+<label><input type="radio" name="q2" value="b"> Nephronas</label>
+<label><input type="radio" name="q2" value="c"> Alveolė</label>
+<label><input type="radio" name="q2" value="d"> Sinapsė</label>
+</div>
+
+<div class="task" id="t3">
+<h3>3️⃣ Kuris mikroorganizmas dažniausiai sukelia pasiutligę?</h3>
+<label><input type="radio" name="q3" value="a"> Bakterija</label>
+<label><input type="radio" name="q3" value="b"> Grybelis</label>
+<label><input type="radio" name="q3" value="c"> Virusas</label>
+<label><input type="radio" name="q3" value="d"> Parazitas</label>
+</div>
+
+<div class="task" id="t4">
+<h3>4️⃣ Koks terminas apibūdina gyvūnų ligų perdavimą žmogui?</h3>
+<label><input type="radio" name="q4" value="a"> Antropozė</label>
+<label><input type="radio" name="q4" value="b"> Zoonozė</label>
+<label><input type="radio" name="q4" value="c"> Endemija</label>
+<label><input type="radio" name="q4" value="d"> Simbiozė</label>
+</div>
+
+<div class="task" id="t5">
+<h3>5️⃣ Kuris vitaminas yra svarbiausias kalcio pasisavinimui?</h3>
+<label><input type="radio" name="q5" value="a"> Vitaminas A</label>
+<label><input type="radio" name="q5" value="b"> Vitaminas B12</label>
+<label><input type="radio" name="q5" value="c"> Vitaminas C</label>
+<label><input type="radio" name="q5" value="d"> Vitaminas D</label>
+</div>
+
+<div class="task" id="t6">
+<h3>6️⃣ Kuri sistema atsakinga už hormonų gamybą?</h3>
+<label><input type="radio" name="q6" value="a"> Nervų sistema</label>
+<label><input type="radio" name="q6" value="b"> Kvėpavimo sistema</label>
+<label><input type="radio" name="q6" value="c"> Endokrininė sistema</label>
+<label><input type="radio" name="q6" value="d"> Limfinė sistema</label>
+</div>
+
+<div class="task" id="t7">
+<h3>7️⃣ Koks yra pagrindinis antibiotikų veikimo tikslas?</h3>
+<label><input type="radio" name="q7" value="a"> Naikinti virusus</label>
+<label><input type="radio" name="q7" value="b"> Slopinti bakterijų augimą</label>
+<label><input type="radio" name="q7" value="c"> Stiprinti imunitetą</label>
+<label><input type="radio" name="q7" value="d"> Mažinti skausmą</label>
+</div>
+
+<div class="task" id="t8">
+<h3>8️⃣ Kuri gyvūnų grupė yra homeoterminė?</h3>
+<label><input type="radio" name="q8" value="a"> Ropliai</label>
+<label><input type="radio" name="q8" value="b"> Varliagyviai</label>
+<label><input type="radio" name="q8" value="c"> Žuvys</label>
+<label><input type="radio" name="q8" value="d"> Žinduoliai</label>
+</div>
+
+<div class="task" id="t9">
+<h3>9️⃣ Kuris organas pirmiausia metabolizuoja vaistus?</h3>
+<label><input type="radio" name="q9" value="a"> Inkstai</label>
+<label><input type="radio" name="q9" value="b"> Širdis</label>
+<label><input type="radio" name="q9" value="c"> Kepenys</label>
+<label><input type="radio" name="q9" value="d"> Plaučiai</label>
+</div>
+
+<div class="task" id="t10">
+<h3>🔟 Kaip vadinamas gyvūnų chirurginis sterilizavimas?</h3>
+<label><input type="radio" name="q10" value="a"> Vakcinacija</label>
+<label><input type="radio" name="q10" value="b"> Kastracija</label>
+<label><input type="radio" name="q10" value="c"> Intubacija</label>
+<label><input type="radio" name="q10" value="d"> Sedacija</label>
+</div>
+
+<button type="button" onclick="check()">Tikrinti</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+function check() {
+    const correct = ["c","b","c","b","d","c","b","d","c","b"];
+    let allCorrect = true;
+
+    document.querySelectorAll(".task").forEach(t => t.classList.remove("wrong"));
+
+    correct.forEach((ans, i) => {
+        const q = document.querySelector(`input[name="q${i+1}"]:checked`);
+        if (!q || q.value !== ans) {
+            document.getElementById("t" + (i+1)).classList.add("wrong");
+            allCorrect = false;
+        }
+    });
+
+    document.getElementById("result").innerText = allCorrect
+        ? "🎓 Sveikinu, esi veterinaras."
+        : "❌ Bandyk dar kartą – yra neteisingų atsakymų.";
+}
+</script>
+
+</body>
+</html>
