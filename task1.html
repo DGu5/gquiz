@@ -93,7 +93,7 @@ button {
 
 <body>
 
-<h1>🌟 Atlik užduotis ir laimėk Roblox kodą! 🌟</h1>
+<h1>🌟 Atlik užduotis ir atsiimk kalėdų dovaną! 🌟</h1>
 
 <form id="quiz">
 
@@ -105,4 +105,127 @@ button {
 
 <div class="task" id="t2">
 <h3>2️⃣ Kokia yra žodžio <b>„klausyti“</b> forma?</h3>
-Dabartis: <input
+Dabartis: <input type="text" name="q2a"><br><br>
+Praeitis: <input type="text" name="q2b"><br><br>
+Ateitis: <input type="text" name="q2c">
+</div>
+
+<!-- MATEMATIKA -->
+<div class="task" id="t3">
+<h3>3️⃣ 7 × 8 = ?</h3>
+<input type="number" name="q3">
+</div>
+
+<div class="task" id="t4">
+<h3>4️⃣ 87 − 43 = ?</h3>
+<input type="number" name="q4">
+</div>
+
+<!-- GAMTOS PAŽINIMAS -->
+<div class="task" id="t5">
+<h3>5️⃣ Kiek metų laikų yra?</h3>
+<label><input type="radio" name="q5" value="2"> 2</label>
+<label><input type="radio" name="q5" value="3"> 3</label>
+<label><input type="radio" name="q5" value="4"> 4</label>
+</div>
+
+<div class="task" id="t6">
+<h3>6️⃣ Prie kiek laipsnių užšąla vanduo?</h3>
+<label><input type="radio" name="q6" value="0"> 0 °C</label>
+<label><input type="radio" name="q6" value="5"> 5 °C</label>
+<label><input type="radio" name="q6" value="10"> 10 °C</label>
+</div>
+
+<!-- ANGLŲ KALBA -->
+<div class="task" id="t7">
+<h3>7️⃣ I ___ my dog</h3>
+<label><input type="radio" name="q7" value="eat"> eat</label>
+<label><input type="radio" name="q7" value="sleep"> sleep</label>
+<label><input type="radio" name="q7" value="love"> love</label>
+</div>
+
+<div class="task" id="t8">
+<h3>8️⃣ Ką reiškia žodis "<b>car</b>"?</h3>
+<label><input type="radio" name="q8" value="namas"> Namas</label>
+<label><input type="radio" name="q8" value="automobilis"> Automobilis</label>
+<label><input type="radio" name="q8" value="knyga"> Knyga</label>
+</div>
+
+<!-- LOGIKA / IT -->
+<div class="task" id="t9">
+<h3>9️⃣ Kuris paveikslėlis netinka?</h3>
+<label><input type="radio" name="q9" value="obuolys" style="font-size:150%;"> 🍎</label>
+<label><input type="radio" name="q9" value="bananas" style="font-size:150%;"> 🍌</label>
+<label><input type="radio" name="q9" value="automobilis" style="font-size:150%;"> 🚗</label>
+</div>
+
+<div class="task" id="t10">
+<h3>🔟 Kas naudojama su kompiuteriu?</h3>
+<label><input type="radio" name="q10" value="klaviatura" style="font-size:150%;"> ⌨️ Klaviatūra</label>
+<label><input type="radio" name="q10" value="saukstas" style="font-size:150%;"> 🥄 Šaukštas</label>
+<label><input type="radio" name="q10" value="pagalve" style="font-size:150%;"> 🛏️ Pagalvė</label>
+</div>
+
+<button type="button" onclick="check()">🎯 Tikrinti</button>
+</form>
+
+<div id="result"></div>
+
+<div id="reward">
+🎉 ŠAUNUOLIS! 🎉<br><br>
+Visos užduotys atliktos teisingai!<br><br>
+Roblox kodas: <b>XXXX-XXXX-XXXX</b>
+</div>
+
+<script>
+function check() {
+    let allCorrect = true;
+    document.querySelectorAll(".task").forEach(t => t.classList.remove("wrong"));
+
+    // 1 - arbūzas
+    if (document.querySelector('input[name="q1"]').value.toLowerCase() !== "ū") { 
+        document.getElementById("t1").classList.add("wrong"); allCorrect = false; 
+    }
+
+    // 2 - klausyti laikai
+    if (
+        document.querySelector('input[name="q2a"]').value.toLowerCase() !== "klausia" ||
+        document.querySelector('input[name="q2b"]').value.toLowerCase() !== "klausė" ||
+        document.querySelector('input[name="q2c"]').value.toLowerCase() !== "klausys"
+    ) { document.getElementById("t2").classList.add("wrong"); allCorrect = false; }
+
+    if (document.querySelector('input[name="q3"]').value != "56") { document.getElementById("t3").classList.add("wrong"); allCorrect = false; }
+    if (document.querySelector('input[name="q4"]').value != "44") { document.getElementById("t4").classList.add("wrong"); allCorrect = false; }
+    if (document.querySelector('input[name="q5"]:checked')?.value !== "4") { document.getElementById("t5").classList.add("wrong"); allCorrect = false; }
+    if (document.querySelector('input[name="q6"]:checked')?.value !== "0") { document.getElementById("t6").classList.add("wrong"); allCorrect = false; }
+    if (document.querySelector('input[name="q7"]:checked')?.value !== "love") { document.getElementById("t7").classList.add("wrong"); allCorrect = false; }
+    if (document.querySelector('input[name="q8"]:checked')?.value !== "automobilis") { document.getElementById("t8").classList.add("wrong"); allCorrect = false; }
+    if (document.querySelector('input[name="q9"]:checked')?.value !== "automobilis") { document.getElementById("t9").classList.add("wrong"); allCorrect = false; }
+    if (document.querySelector('input[name="q10"]:checked')?.value !== "klaviatura") { document.getElementById("t10").classList.add("wrong"); allCorrect = false; }
+
+    if (allCorrect) {
+        document.getElementById("reward").style.display = "block";
+        document.getElementById("result").innerText = "";
+        confetti();
+    } else {
+        document.getElementById("reward").style.display = "none";
+        document.getElementById("result").innerText =
+            "❌ Bandyk dar kartą! Yra neteisingų atsakymų.";
+    }
+}
+
+function confetti() {
+    for (let i = 0; i < 120; i++) {
+        const c = document.createElement("div");
+        c.className = "confetti";
+        c.style.left = Math.random() * 100 + "vw";
+        c.style.background = `hsl(${Math.random() * 360}, 100%, 50%)`;
+        c.style.animationDuration = (2 + Math.random() * 2) + "s";
+        document.body.appendChild(c);
+        setTimeout(() => c.remove(), 4000);
+    }
+}
+</script>
+
+</body>
+</html>
