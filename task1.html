@@ -13,7 +13,7 @@ body {
 
 h1 {
     text-align: center;
-    font-size: 38px; /* +20% */
+    font-size: 42px; /* +20% */
 }
 
 .task {
@@ -23,7 +23,7 @@ h1 {
     margin-bottom: 20px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     transition: 0.3s;
-    font-size: 120%; /* +20% */
+    font-size: 130%; /* +20% */
 }
 
 .task.wrong {
@@ -39,7 +39,7 @@ label {
 }
 
 input[type="text"], input[type="number"] {
-    font-size: 22px; /* padidinta */
+    font-size: 26px; /* padidinta */
     padding: 8px;
     width: 130px;
     text-align: center;
@@ -104,7 +104,7 @@ button {
 </div>
 
 <div class="task" id="t2">
-<h3>2️⃣ Kokia yra žodžio <b>„klausyti“</b> forma?</h3>
+<h3>2️⃣ Kokia yra žodžio <b>„daryti“</b> 3 (jis/ji) forma ?</h3>
 Dabartis: <input type="text" name="q2a"><br><br>
 Praeitis: <input type="text" name="q2b"><br><br>
 Ateitis: <input type="text" name="q2c">
@@ -166,14 +166,15 @@ Ateitis: <input type="text" name="q2c">
 <label><input type="radio" name="q10" value="pagalve" style="font-size:150%;"> 🛏️ Pagalvė</label>
 </div>
 
+<div id="result"></div>
+    
 <button type="button" onclick="check()">🎯 Tikrinti</button>
 </form>
 
-<div id="result"></div>
 
 <div id="reward">
 🎉 ŠAUNUOLIS! 🎉<br><br>
-Visos užduotys atliktos teisingai!<br><br>
+Sveikiname su kalėdomis! Tavo dovana:<br><br>
 Roblox kodas: <b>XXXX-XXXX-XXXX</b>
 </div>
 
@@ -189,9 +190,9 @@ function check() {
 
     // 2 - klausyti laikai
     if (
-        document.querySelector('input[name="q2a"]').value.toLowerCase() !== "klausia" ||
-        document.querySelector('input[name="q2b"]').value.toLowerCase() !== "klausė" ||
-        document.querySelector('input[name="q2c"]').value.toLowerCase() !== "klausys"
+        document.querySelector('input[name="q2a"]').value.toLowerCase() !== "daro" ||
+        document.querySelector('input[name="q2b"]').value.toLowerCase() !== "darė" ||
+        document.querySelector('input[name="q2c"]').value.toLowerCase() !== "darys"
     ) { document.getElementById("t2").classList.add("wrong"); allCorrect = false; }
 
     if (document.querySelector('input[name="q3"]').value != "56") { document.getElementById("t3").classList.add("wrong"); allCorrect = false; }
