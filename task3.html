@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Žaidžiam ir mokomės</title>
+
+<style>
+body {
+    font-family: "Comic Sans MS", Arial, sans-serif;
+    background: linear-gradient(#fde2f3, #fce7f3);
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+    color: #be185d;
+}
+
+.task {
+    background: white;
+    border-radius: 25px;
+    padding: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: 150%;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.1);
+}
+
+.task.wrong {
+    background: #ffe4e6;
+    border: 4px solid #fb7185;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.option {
+    font-size: 80px;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.option:hover {
+    transform: scale(1.2);
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    padding: 20px 45px;
+    font-size: 32px;
+    background: #ec4899;
+    color: white;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+}
+
+#result {
+    text-align: center;
+    font-size: 32px;
+    margin-top: 20px;
+    color: #9d174d;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌸 Pažaiskime! 🌸</h1>
+
+<form id="quiz">
+
+<!-- 1 -->
+<div class="task" id="t1">
+<h3>🐾 Kur yra liūtas?</h3>
+<div class="options">
+<span class="option" onclick="set('q1','a')">🦛</span>
+<span class="option" onclick="set('q1','b')">🐶</span>
+<span class="option" onclick="set('q1','c')">🦓</span>
+<span class="option" onclick="set('q1','d')">🦁</span>
+</div>
+<input type="hidden" name="q1">
+</div>
+
+<!-- 2 -->
+<div class="task" id="t2">
+<h3>🥤 Ką galima gerti?</h3>
+<div class="options">
+<span class="option" onclick="set('q2','a')">🍎</span>
+<span class="option" onclick="set('q2','b')">💧</span>
+<span class="option" onclick="set('q2','c')">📱</span>
+<span class="option" onclick="set('q2','d')">❄️</span>
+</div>
+<input type="hidden" name="q2">
+</div>
+
+<!-- 3 -->
+<div class="task" id="t3">
+<h3>🐱 Kur yra katė?</h3>
+<div class="options">
+<span class="option" onclick="set('q3','a')">🐱</span>
+<span class="option" onclick="set('q3','b')">🐘</span>
+<span class="option" onclick="set('q3','c')">🚗</span>
+</div>
+<input type="hidden" name="q3">
+</div>
+
+<!-- 4 -->
+<div class="task" id="t4">
+<h3>🍌 Ką galima valgyti?</h3>
+<div class="options">
+<span class="option" onclick="set('q4','a')">🍌</span>
+<span class="option" onclick="set('q4','b')">🧦</span>
+<span class="option" onclick="set('q4','c')">📘</span>
+</div>
+<input type="hidden" name="q4">
+</div>
+
+<!-- 5 -->
+<div class="task" id="t5">
+<h3>🚗 Kur yra mašina?</h3>
+<div class="options">
+<span class="option" onclick="set('q5','a')">🚗</span>
+<span class="option" onclick="set('q5','b')">🐰</span>
+<span class="option" onclick="set('q5','c')">🌸</span>
+</div>
+<input type="hidden" name="q5">
+</div>
+
+<button type="button" onclick="check()">💖 Tikrinam!</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+function set(q, v) {
+    document.querySelector(`input[name="${q}"]`).value = v;
+}
+
+function check() {
+    const correct = ["d","b","a","a","a"];
+    let ok = true;
+
+    document.querySelectorAll(".task").forEach(t => t.classList.remove("wrong"));
+
+    correct.forEach((a,i)=>{
+        const val = document.querySelector(`input[name="q${i+1}"]`).value;
+        if(val !== a){
+            document.getElementById("t"+(i+1)).classList.add("wrong");
+            ok = false;
+        }
+    });
+
+    document.getElementById("result").innerText = ok
+        ? "🌟 ŠAUNUOLĖ! 🌟"
+        : "🌸 Bandykime dar kartą!";
+}
+</script>
+
+</body>
+</html>
