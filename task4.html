@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>Pažaiskime dar</title>
+
+<style>
+body {
+    font-family: "Comic Sans MS", Arial, sans-serif;
+    background: linear-gradient(#fde2f3, #fbcfe8);
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 42px;
+    color: #be185d;
+}
+
+.task {
+    background: white;
+    border-radius: 30px;
+    padding: 25px;
+    margin-bottom: 30px;
+    text-align: center;
+    font-size: 150%;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.task.wrong {
+    background: #ffe4e6;
+    border: 5px solid #fb7185;
+}
+
+.options {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.option {
+    font-size: 80px;
+    cursor: pointer;
+    padding: 15px;
+    border-radius: 25px;
+    border: 6px solid transparent;
+    transition: transform 0.15s, border 0.15s, background 0.15s;
+}
+
+.option.selected {
+    border-color: #ec4899;
+    background: #fce7f3;
+}
+
+.option:hover {
+    transform: scale(1.12);
+}
+
+button {
+    display: block;
+    margin: 40px auto;
+    padding: 22px 50px;
+    font-size: 34px;
+    background: #ec4899;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    cursor: pointer;
+}
+
+#result {
+    text-align: center;
+    font-size: 30px;
+    margin-top: 20px;
+    color: #9d174d;
+}
+
+/* POP-UP */
+#popup {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 999;
+}
+
+#popupContent {
+    background: white;
+    border-radius: 30px;
+    padding: 30px;
+    text-align: center;
+}
+
+#popupContent h2 {
+    font-size: 36px;
+    color: #be185d;
+    margin-bottom: 15px;
+}
+
+#popupContent img {
+    max-width: 280px;
+    border-radius: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🌸 Pažaiskime dar 🌸</h1>
+
+<form id="quiz">
+
+<!-- 1 -->
+<div class="task" id="t1">
+<h3>🐘 Kur yra dramblys?</h3>
+<div class="options">
+<div class="option" onclick="toggleOption(this,'q1','a')">🦒</div>
+<div class="option" onclick="toggleOption(this,'q1','b')">🐘</div>
+<div class="option" onclick="toggleOption(this,'q1','c')">🐕</div>
+<div class="option" onclick="toggleOption(this,'q1','d')">🐦</div>
+</div>
+<input type="hidden" name="q1">
+</div>
+
+<!-- 2 -->
+<div class="task" id="t2">
+<h3>🍽️ Ką galima valgyti?</h3>
+<div class="options">
+<div class="option" onclick="toggleOption(this,'q2','a')">🍪</div>
+<div class="option" onclick="toggleOption(this,'q2','b')">🍋</div>
+<div class="option" onclick="toggleOption(this,'q2','c')">🧸</div>
+<div class="option" onclick="toggleOption(this,'q2','d')">🧱</div>
+</div>
+<input type="hidden" name="q2">
+</div>
+
+<!-- 3 -->
+<div class="task" id="t3">
+<h3>⚽ Kur yra kamuolys?</h3>
+<div class="options">
+<div class="option" onclick="toggleOption(this,'q3','a')">⚽</div>
+<div class="option" onclick="toggleOption(this,'q3','b')">🚗</div>
+<div class="option" onclick="toggleOption(this,'q3','c')">🌼</div>
+<div class="option" onclick="toggleOption(this,'q3','d')">📱</div>
+</div>
+<input type="hidden" name="q3">
+</div>
+
+<!-- 4 -->
+<div class="task" id="t4">
+<h3>✈️ Kas skrenda danguje?</h3>
+<div class="options">
+<div class="option" onclick="toggleOption(this,'q4','a')">✈️</div>
+<div class="option" onclick="toggleOption(this,'q4','b')">🐟</div>
+<div class="option" onclick="toggleOption(this,'q4','c')">🚲</div>
+<div class="option" onclick="toggleOption(this,'q4','d')">🌳</div>
+</div>
+<input type="hidden" name="q4">
+</div>
+
+<!-- 5 -->
+<div class="task" id="t5">
+<h3>🔵 Kur yra mėlyna spalva?</h3>
+<div class="options">
+<div class="option" onclick="toggleOption(this,'q5','a')">🔴</div>
+<div class="option" onclick="toggleOption(this,'q5','b')">🟢</div>
+<div class="option" onclick="toggleOption(this,'q5','c')">🔵</div>
+<div class="option" onclick="toggleOption(this,'q5','d')">🟡</div>
+</div>
+<input type="hidden" name="q5">
+</div>
+
+<!-- 6 -->
+<div class="task" id="t6">
+<h3>🌊 Kas plaukioja jūroje?</h3>
+<div class="options">
+<div class="option" onclick="toggleOption(this,'q6','a')">🍊</div>
+<div class="option" onclick="toggleOption(this,'q6','b')">🐟</div>
+<div class="option" onclick="toggleOption(this,'q6','c')">🚲</div>
+<div class="option" onclick="toggleOption(this,'q6','d')">🍰</div>
+</div>
+<input type="hidden" name="q6">
+
+  
+
+<div id="result"></div>
+</div>
+
+<button type="button" onclick="check()">💖 Tikrinam!</button>
+</form>
+
+<!-- POP-UP -->
+<div id="popup" onclick="closePopup()">
+<div id="popupContent">
+<h2>🎉 Sveikinu! Šaunuolė! 🎉</h2>
+<img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExenFxcWY2YjAycnNrM3B4eWt1MG0xZzZoZjhnbDRjbGRhMGx5MXg1bCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/fXiEx2PQF1bBXYi7bG/giphy.gif">
+</div>
+</div>
+
+<script>
+function toggleOption(el, q, val) {
+    const task = el.closest(".task");
+    const hidden = task.querySelector(`input[name="${q}"]`);
+    const options = task.querySelectorAll(".option");
+
+    if (hidden.value === val) {
+        hidden.value = "";
+        el.classList.remove("selected");
+        return;
+    }
+
+    options.forEach(o => o.classList.remove("selected"));
+    el.classList.add("selected");
+    hidden.value = val;
+}
+
+function check() {
+    const correct = ["b","a","a","a","c","b"];
+    let allCorrect = true;
+
+    document.querySelectorAll(".task").forEach(t => t.classList.remove("wrong"));
+
+    correct.forEach((answer, index) => {
+        const val = document.querySelector(`input[name="q${index+1}"]`).value;
+        if (val !== answer) {
+            document.getElementById("t"+(index+1)).classList.add("wrong");
+            allCorrect = false;
+        }
+    });
+
+    if (allCorrect) {
+        document.getElementById("result").innerText = "";
+        document.getElementById("popup").style.display = "flex";
+    } else {
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("result").innerText =
+            "🌸 Bandyk dar kartą! Yra neteisingų atsakymų.";
+    }
+}
+
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
