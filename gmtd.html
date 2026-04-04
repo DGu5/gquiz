@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+<meta charset="UTF-8">
+<title>2 klasės iššūkis</title>
+
+<style>
+body {
+    font-family: Arial;
+    background: #f0f9ff;
+    padding: 20px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.task {
+    background: white;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+.task.wrong {
+    background: #ffe4e6;
+    border: 2px solid red;
+}
+
+button {
+    display: block;
+    margin: 30px auto;
+    padding: 15px 30px;
+    font-size: 20px;
+}
+
+#result {
+    text-align: center;
+    font-size: 22px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+</style>
+</head>
+
+<body>
+
+<h1>🎓 Gimtadienio klausimynas 🎓</h1>
+
+<form id="quiz">
+
+<!-- 1 -->
+<div class="task" id="t1">
+<p>1. Kokia yra „klausyti“ dabartis?</p>
+<label><input type="radio" name="q1" value="a"> klauso 👂</label><br>
+<label><input type="radio" name="q1" value="b"> klausė 📖</label><br>
+<label><input type="radio" name="q1" value="c"> klausys 🔮</label>
+</div>
+
+<!-- 2 -->
+<div class="task" id="t2">
+<p>2. Įrašyk trūkstamą raidę: arb_zas 🍉</p>
+<label><input type="radio" name="q2" value="a"> ū ✅</label>
+<label><input type="radio" name="q2" value="b"> u</label>
+<label><input type="radio" name="q2" value="c"> o</label>
+</div>
+
+<!-- 3 -->
+<div class="task" id="t3">
+<p>3. 7 × 8 = ?</p>
+<label><input type="radio" name="q3" value="a"> 54</label>
+<label><input type="radio" name="q3" value="b"> 56 🎯</label>
+<label><input type="radio" name="q3" value="c"> 64</label>
+</div>
+
+<!-- 4 -->
+<div class="task" id="t4">
+<p>4. 87 - 43 = ?</p>
+<label><input type="radio" name="q4" value="a"> 44 ✅</label>
+<label><input type="radio" name="q4" value="b"> 34</label>
+<label><input type="radio" name="q4" value="c"> 54</label>
+</div>
+
+<!-- 5 -->
+<div class="task" id="t5">
+<p>5. Koks metų laikas po žiemos?</p>
+<label><input type="radio" name="q5" value="a"> pavasaris 🌸</label>
+<label><input type="radio" name="q5" value="b"> vasara ☀️</label>
+<label><input type="radio" name="q5" value="c"> ruduo 🍂</label>
+</div>
+
+<!-- 6 -->
+<div class="task" id="t6">
+<p>6. Koks sportas yra populiariausias pasaulyje?</p>
+<label><input type="radio" name="q6" value="a"> golfas ⛳</label>
+<label><input type="radio" name="q6" value="b"> krepšinis 🏀</label>
+<label><input type="radio" name="q6" value="c"> tenisas 🎾</label>
+<label><input type="radio" name="q6" value="d"> futbolas ⚽</label>
+</div>
+
+<!-- 7 -->
+<div class="task" id="t7">
+<p>7. I love to __ with my phone</p>
+<label><input type="radio" name="q7" value="a"> eat 🍔</label>
+<label><input type="radio" name="q7" value="b"> sleep 😴</label>
+<label><input type="radio" name="q7" value="c"> jump 🦘</label>
+<label><input type="radio" name="q7" value="d"> play 🎮</label>
+</div>
+
+<!-- 8 -->
+<div class="task" id="t8">
+<p>8. Kas čia netinka?</p>
+<label><input type="radio" name="q8" value="a"> obuolys 🍎</label><br>
+<label><input type="radio" name="q8" value="b"> bananas 🍌</label><br>
+<label><input type="radio" name="q8" value="c"> ananasas 🍍</label><br>
+<label><input type="radio" name="q8" value="d"> apelsinas 🍊</label><br>
+<label><input type="radio" name="q8" value="e"> automobilis 🚗</label>
+</div>
+
+<!-- 9 -->
+<div class="task" id="t9">
+<p>9. Kiek kampų turi kvadratas?</p>
+<label><input type="radio" name="q9" value="a"> 3</label>
+<label><input type="radio" name="q9" value="b"> 4 ✅</label>
+<label><input type="radio" name="q9" value="c"> 5</label>
+</div>
+
+<button type="button" onclick="check()">Tikrinti</button>
+</form>
+
+<div id="result"></div>
+
+<script>
+function check() {
+    const correct = ["a","a","b","a","a","d","d","e","b"];
+    let allCorrect = true;
+
+    document.querySelectorAll(".task").forEach(t => t.classList.remove("wrong"));
+
+    correct.forEach((ans, i) => {
+        const val = document.querySelector(`input[name="q${i+1}"]:checked`);
+        if (!val || val.value !== ans) {
+            document.getElementById("t"+(i+1)).classList.add("wrong");
+            allCorrect = false;
+        }
+    });
+
+    if (allCorrect) {
+        document.getElementById("result").innerText =
+            "Su gimtadieniu Kajau! Dovana Eneba.com čekis: 3C23A-02E98-424E7";
+    } else {
+        document.getElementById("result").innerText =
+            "❌ Bandyk dar kartą!";
+    }
+}
+</script>
+
+</body>
+</html>
